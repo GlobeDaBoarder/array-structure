@@ -1,6 +1,6 @@
 #include "QueueArr.h"
 #include <iostream>
-#define Q_SIZE 10
+#define Q_SIZE 11
 
 //private methods
 
@@ -29,20 +29,12 @@ Queue::~Queue()
 
 const bool Queue::isEmty() const
 {
-	if (m_size == 0)
-	{
-		return 1;
-	}
-	return 0;
+	return (m_size == 0);
 }
 
 const bool Queue::isFull() const
 {
-	if (m_size == m_capacity - 1)
-	{
-		return 1;
-	}
-	return 0;
+	return (m_size == m_capacity - 1);
 }
 
 void Queue::enqueue(int el)
@@ -72,14 +64,14 @@ void Queue::dequeue()
 
 void Queue::peek(int ind)
 {
-	if (ind > m_capacity - 1 || ind < 1)
+	if (ind > m_size || ind < 1)
 	{
-		std::cout << "wrong index. Try again" << std::endl;
+		std::cout << "Index ou of bounds of the queue" << std::endl;
 		return;
 	}
 
 	int* ind_ptr = m_front_ptr + ind - 1;
-	std::cout << *check_ptr(ind_ptr) << std::endl;
+	std::cout << "element with index #" << ind << "is " << *check_ptr(ind_ptr) << std::endl;
 }
 
 void Queue::front() const
@@ -109,6 +101,8 @@ void Queue::clear()
 	m_back_ptr = m_data;
 	m_front_ptr = m_data;
 	m_size = 0;
+
+	std::cout << "The queue is cleared!" << std::endl;
 }
 
 
@@ -130,4 +124,7 @@ void Queue::reverse()
 		check_ptr(++it);
 	}
 
+	std::cout << "The queue is reversed!" << std::endl;
+
+	delete[] el_copy;
 }
