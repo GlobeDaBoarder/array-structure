@@ -4,9 +4,12 @@
 
 //private methods
 
-int* Queue::increase_ptr(int* ptr)
+void Queue::check_ptr(int*& ptr)
 {
-	return  (ptr != m_data_end) ? ++ptr : m_data;
+	if (ptr > m_data + m_capacity - 1)
+	{
+		ptr = ptr - m_capacity;
+	}
 }
 
 
@@ -16,7 +19,6 @@ int* Queue::increase_ptr(int* ptr)
 Queue::Queue()
 	:m_data(new int[Q_SIZE]), m_capacity(Q_SIZE), m_back_ptr(m_data), m_front_ptr(m_data), m_size(0)
 {
-	m_data_end = m_data + m_capacity - 1;
 }
 
 Queue::~Queue()
@@ -33,7 +35,8 @@ void Queue::enqueue(int el)
 	}
 
 	*m_back_ptr = el;
-	m_back_ptr = increase_ptr(m_back_ptr);
+	++m_back_ptr;
+	check_ptr(m_back_ptr);
 	++m_size;
 }
 
@@ -44,7 +47,8 @@ void Queue::dequeue()
 		std::cout << "queue is empty. Nothing to delete" << std::endl; 
 		return;
 	}
-	m_front_ptr = increase_ptr(m_front_ptr);
+	++m_front_ptr;
+	check_ptr(m_front_ptr);
 	--m_size;
 }
 
@@ -58,9 +62,6 @@ void Queue::peek(int ind)
 	}
 
 	int* ind_ptr = m_front_ptr + ind - 1;
-	if (ind_ptr > m_data_end)
-	{
-		ind_ptr = ind_ptr - m_capacity;
-	}
-	std::cout << *ind_ptr;
+	check_ptr(ind_ptr);
+	std::cout << *ind_ptr << std::endl;
 }

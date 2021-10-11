@@ -6,13 +6,12 @@ class Queue
 {
 private:
 	int* m_data;
-	int* m_data_end;
 	int* m_front_ptr;
 	int* m_back_ptr;
 	size_t m_size;
 	size_t m_capacity;
 private:
-	int* increase_ptr(int*);
+	void check_ptr(int*&);
 
 public:
 	Queue();
