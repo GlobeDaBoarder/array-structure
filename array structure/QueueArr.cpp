@@ -29,7 +29,7 @@ Queue::~Queue()
 
 const bool Queue::isEmty() const
 {
-	if (m_front_ptr == m_back_ptr)
+	if (m_size == 0)
 	{
 		return 1;
 	}
@@ -101,10 +101,33 @@ void Queue::display()
 		std::cout << *it << ' ';
 		it = check_ptr(++it);
 	}
+	std::cout << std::endl;
 }
 
 void Queue::clear()
 {
 	m_back_ptr = m_data;
 	m_front_ptr = m_data;
+	m_size = 0;
+}
+
+
+
+void Queue::reverse()
+{
+	int* el_copy = new int[m_size];
+	int* it = m_front_ptr;
+	for (int i = 0; i < m_size; ++i)
+	{
+		el_copy[i] = *it;
+		check_ptr(++it);
+	}
+
+	it = m_front_ptr;
+	for (int i = m_size - 1; i >= 0; --i)
+	{
+		*it = el_copy[i];
+		check_ptr(++it);
+	}
+
 }

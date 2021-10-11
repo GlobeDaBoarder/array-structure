@@ -33,4 +33,12 @@ int main()
 	q1.size();
 
 	q1.display();
+	std::cout << q1.isEmty() << ' ' << q1.isFull() << std::endl;
+
+	/*q1.clear();
+	q1.display();
+	std::cout << q1.isEmty() << ' ' << q1.isFull() << std::endl;*/
+
+	q1.reverse();
+	q1.display();
 }
