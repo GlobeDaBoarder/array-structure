@@ -27,9 +27,27 @@ Queue::~Queue()
 	delete[] m_data;
 }
 
-void Queue::enqueue(int el)
+const bool Queue::isEmty() const
+{
+	if (m_front_ptr == m_back_ptr)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+const bool Queue::isFull() const
 {
 	if (m_size == m_capacity - 1)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+void Queue::enqueue(int el)
+{
+	if (this->isFull())
 	{
 		std::cout << "out of size" << std::endl;
 		return;
@@ -42,7 +60,7 @@ void Queue::enqueue(int el)
 
 void Queue::dequeue()
 {
-	if (m_back_ptr == m_front_ptr)
+	if (this->isEmty())
 	{
 		std::cout << "queue is empty. Nothing to delete" << std::endl; 
 		return;
@@ -67,4 +85,26 @@ void Queue::peek(int ind)
 void Queue::front() const
 {
 	std::cout << "Front element is: " <<  * m_front_ptr << std::endl;
+}
+
+void Queue::size() const
+{
+	std::cout << "size is: " << m_size << std::endl;
+}
+
+void Queue::display() 
+{
+	int* it = m_front_ptr;
+	std::cout << "All elements of queue:" << std::endl;
+	while (it != m_back_ptr)
+	{
+		std::cout << *it << ' ';
+		it = check_ptr(++it);
+	}
+}
+
+void Queue::clear()
+{
+	m_back_ptr = m_data;
+	m_front_ptr = m_data;
 }

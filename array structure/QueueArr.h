@@ -16,14 +16,14 @@ private:
 public:
 	Queue();
 	~Queue();
+	const bool isEmty() const;
+	const bool isFull() const;
 	void enqueue(int);
 	void dequeue();
 	void peek(int);
 	void front() const;
-	bool isEmty();
-	bool isFull();
+	void size() const;
 	void display();
 	void clear();
-	size_t size();
 	void reverse();
 };
