@@ -27,4 +27,6 @@ int main()
 	q1.peek(0);
 	q1.peek(9);
 	q1.peek(11);
+
+	q1.front();
 }

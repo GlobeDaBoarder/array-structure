@@ -11,7 +11,7 @@ private:
 	size_t m_size;
 	size_t m_capacity;
 private:
-	void check_ptr(int*&);
+	int*& check_ptr(int*&);
 
 public:
 	Queue();
@@ -19,7 +19,7 @@ public:
 	void enqueue(int);
 	void dequeue();
 	void peek(int);
-	int front();
+	void front() const;
 	bool isEmty();
 	bool isFull();
 	void display();

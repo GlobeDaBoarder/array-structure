@@ -4,12 +4,13 @@
 
 //private methods
 
-void Queue::check_ptr(int*& ptr)
+int*& Queue::check_ptr(int*& ptr)
 {
 	if (ptr > m_data + m_capacity - 1)
 	{
 		ptr = ptr - m_capacity;
 	}
+	return ptr;
 }
 
 
@@ -35,8 +36,7 @@ void Queue::enqueue(int el)
 	}
 
 	*m_back_ptr = el;
-	++m_back_ptr;
-	check_ptr(m_back_ptr);
+	m_back_ptr = check_ptr(++m_back_ptr);
 	++m_size;
 }
 
@@ -47,8 +47,7 @@ void Queue::dequeue()
 		std::cout << "queue is empty. Nothing to delete" << std::endl; 
 		return;
 	}
-	++m_front_ptr;
-	check_ptr(m_front_ptr);
+	m_front_ptr = check_ptr(++m_front_ptr);
 	--m_size;
 }
 
@@ -62,6 +61,10 @@ void Queue::peek(int ind)
 	}
 
 	int* ind_ptr = m_front_ptr + ind - 1;
-	check_ptr(ind_ptr);
-	std::cout << *ind_ptr << std::endl;
+	std::cout << *check_ptr(ind_ptr) << std::endl;
+}
+
+void Queue::front() const
+{
+	std::cout << "Front element is: " <<  * m_front_ptr << std::endl;
 }
