@@ -128,3 +128,20 @@ void Queue::reverse()
 
 	delete[] el_copy;
 }
+
+void PrintInstructions()
+{
+	std::cout << "Create a queue (maximim length is 10) using these commands:" << std::endl
+		<< "\tadd -- adds inputed element to the queue" << std::endl
+		<< "\trem -- removes first element in the queue" << std::endl
+		<< "\tpeek -- reval element with inputed index of the queue" << std::endl
+		<< "\tfront -- prints first element of the queue" << std::endl
+		<< "\tisFull -- prints whether queue is full or not (TRUE/FALSE)" << std::endl
+		<< "\tisEmpty -- prints whether queue is empty or not (TRUE/FALSE)" << std::endl
+		<< "\tdisplay -- prints all elements of th queue" << std::endl
+		<< "\tclear -- clears all elements of the queue" << std::endl
+		<< "\treverse -- reverts elements' order in the queue" << std::endl
+		<< "\tsize -- prints size of the queue" << std::endl
+		<< "\tq -- exit application" << std::endl
+		<< std::endl;
+}

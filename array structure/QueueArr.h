@@ -27,3 +27,5 @@ public:
 	void clear();
 	void reverse();
 };
+
+void PrintInstructions();
